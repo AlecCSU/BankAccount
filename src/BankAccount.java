@@ -4,22 +4,44 @@ public class BankAccount {
     private int accountID;
     private double balance;
 
-    // Constructor
+    /**
+     * Constructs a BankAccount object with a zero balance.
+     */
     public BankAccount() {
         this.balance = 0.0;
     }
 
-    // Deposit method
+    /**
+     * Deposits a specified amount into the bank account.
+     * @param amount The amount to deposit. Must be positive.
+     */
     public void deposit(double amount) {
+        if(amount < 0) {
+            System.out.println("Deposit amount must be positive.");
+            return;
+        }
         this.balance += amount;
     }
 
-    // Withdrawal method
+    /**
+     * Withdraws a specified amount from the bank account.
+     * @param amount The amount to withdraw. Must be positive and less than or equal to the current balance.
+     */
     public void withdrawal(double amount) {
+        if(amount < 0) {
+            System.out.println("Withdrawal amount must be positive.");
+            return;
+        }
+        if (amount > this.balance) {
+            System.out.println("Insufficient funds for this withdrawal.");
+            return;
+        }
         this.balance -= amount;
     }
 
-    // Setters and getters
+    /**
+     *  Setters and getters
+     */
     public String getFirstName() {
         return firstName;
     }
@@ -48,7 +70,9 @@ public class BankAccount {
         return balance;
     }
 
-    // Account summary
+    /**
+     * Prints a summary of the bank account information.
+     */
     public void accountSummary() {
         System.out.println("Account Summary:");
         System.out.println("First Name: " + firstName);
